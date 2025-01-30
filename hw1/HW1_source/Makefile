@@ -1,4 +1,4 @@
-CXX = g++
+CXX = /opt/homebrew/Cellar/gcc/14.2.0_1/bin/g++-14
 CXXFLAGS = -std=c++17 -fopenmp -pthread -O0
 INCLUDES = -I.
 
