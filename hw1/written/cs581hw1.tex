@@ -1,0 +1,223 @@
+\documentclass[a4paper,12pt]{article} 
+
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm} % basic math packages
+\usepackage{tikz} % for making illustrations
+\usetikzlibrary{shapes.arrows, arrows, decorations.markings, positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{3d}
+\usepackage{graphicx} % for importing images
+\usepackage{xcolor} % more color options
+\usepackage{colortbl}
+\usepackage{multicol} % for making two-column lists
+\usepackage{hyperref} % for hyperlinking
+%\hypersetup{colorlinks=true, urlcolor=cyan,}
+\usepackage{mathabx}
+\usepackage{cleveref}
+\usepackage{subfig}
+\usepackage{array}
+\usepackage{wrapfig}
+\usepackage{bbm}
+\usepackage{fancyhdr}
+\usepackage{algorithm, algorithmicx, algpseudocode}
+\usepackage{stmaryrd}
+\usepackage{physics}
+
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+% theorems, lemmas, examples, etc.
+\newtheorem{theorem}{Theorem}[section]
+% \newtheorem{corollary}{Corollary}[theorem]
+% \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+
+\def\mydefb#1{\expandafter\def\csname bf#1\endcsname{\mathbf{#1}}}
+\def\mydefallb#1{\ifx#1\mydefallb\else\mydefb#1\expandafter\mydefallb\fi}
+\mydefallb aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ\mydefallb
+
+\def\mydefb#1{\expandafter\def\csname cal#1\endcsname{\mathcal{#1}}}
+\def\mydefallb#1{\ifx#1\mydefallb\else\mydefb#1\expandafter\mydefallb\fi}
+\mydefallb aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ\mydefallb
+
+%% Change this to just the normal N,Z,R,C,P,E
+\def\mydefb#1{\expandafter\def\csname bb#1\endcsname{\mathbb{#1}}}
+\def\mydefallb#1{\ifx#1\mydefallb\else\mydefb#1\expandafter\mydefallb\fi}
+\mydefallb CEGIKNPQRST\mydefallb
+
+\newcommand{\half}{\frac{1}{2}}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\matlab}{\textsc{Matlab}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3. Header (and Footer)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize CS 581:  Homework  \# 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Scott (mtscot4)} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Title section of the document
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	% For the title section we want to reproduce the title section of the Problem Set and add your names.
+	
+	\thispagestyle{empty} % This command disables the header on the first page. 
+	
+	\begin{tabular}{p{15.5cm}} % This is a simple tabular environment to align your text nicely 
+		{\large \sc CS 581:  High Performance Computing} \\
+		Emory University \\ Spring 2025 \\ Prof. Tianshi Xu \\
+		\hline % \hline produces horizontal lines.
+		\\
+	\end{tabular} % Our tabular environment ends here.
+	
+	\vspace*{0.3cm} % Now we want to add some vertical space in between the line and our title.
+	
+	\begin{center} % Everything within the center environment is centered.
+		{\Large \bf Homework \# 1} % <---- Don't forget to put in the right number
+		\vspace{2mm}
+		
+		% YOUR NAMES GO HERE
+		{\bf Mitchell Scott}\\ (mtscot4) % <---- Fill in your names here!
+		
+	\end{center}  
+	
+	\vspace{0.4cm}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	% Up until this point you only have to make minor changes for every week (Number of the homework). Your write up essentially starts here.
+	
+	\section{Environment}
+	\begin{enumerate}
+		
+		\item {\bf List the environment you used to run the code (Operating System, CPU, RAM, etc.) }. 
+	
+		\begin{solution}
+			The local environment where I was running the code was on a 2022 MacBook Pro with Apple M2 chip, 8 GB of RAM running macOS Ventura 13.3. 
+		\end{solution}
+	\end{enumerate}
+		\section{Sequential Code}
+		\begin{enumerate}
+			\item The performance accuracy for all code variants was \textbf{98.14\%}.
+			\item Below, you can see the table for my sequential code:
+			\begin{table}[h]
+				\centering
+				\begin{tabular}{|c|l|}
+					\hline
+					\textbf{Trial}& \textbf{Time (ms)}  \\
+					\hline\hline
+					1&  3247 \\
+					2&   3268\\
+					3&   3288 (\textbf{high})\\
+					4&    3238 (\textbf{low})\\
+					5&    3273\\
+					\hline
+					Avg&  3262.7\\
+					\hline
+				\end{tabular}
+				\label{tab:Seq}
+				\caption{}
+			\end{table}
+		\end{enumerate}
+		\section{OpenMP}
+		\begin{enumerate}
+			\item 	
+			\item \begin{table}[h]
+				\centering
+				\begin{tabular}{|c|l|l|l|l|}
+					\hline
+					\textbf{Trial}& \textbf{1 thread (ms)}  &\textbf{2 thread (ms)}  &\textbf{4  thread (ms)}  &\textbf{8 thread (ms)}  \\
+					\hline\hline
+					1& 3399 & 1768 &1015  &  710\\
+					2&  3555 (\textbf{high})&1837 (\textbf{high}) &924  &  708\\
+					3& 3397 & 1770 & 917 (\textbf{low}) &708  \\
+					4& 3407 & 1765 (\textbf{low}) & 1035 (\textbf{high}) & 702 (\textbf{low})  \\
+					5& 3391 (\textbf{low}) &1797  & 918 & 745 (\textbf{high})  \\
+					\hline
+					Avg& 3401 &1778.3  &952.3  & 708.7 \\
+					\hline
+				\end{tabular}
+				\label{tab:OpenMP}
+				\caption{}
+			\end{table}
+		\end{enumerate}
+		
+		\section{Pthreads}
+		\begin{enumerate}
+			\item 
+			item \begin{table}[h]
+				\centering
+				\begin{tabular}{|c|l|l|l|l|}
+					\hline
+					\textbf{Trial}& \textbf{1 thread (ms)}  &\textbf{2 thread (ms)}  &\textbf{4  thread (ms)}  &\textbf{8 thread (ms)}  \\
+					\hline\hline
+					1&  &  &  &  \\
+					2&  &  &  &  \\
+					3&  &  &  &  \\
+					4&  &  &  &  \\
+					5&  &  &  &  \\
+					\hline
+					Avg&  &  &  &  \\
+					\hline
+				\end{tabular}
+				\label{tab:Ptheads}
+				\caption{}
+			\end{table}
+		\end{enumerate}
+		\section{Implimentation}
+		\begin{enumerate}
+			\item 
+		\end{enumerate}
+		
+		
+	
+	\section*{Acknowledgements}
+	I would like to acknowledge that I worked with fellow CS 524 students 
+	
+\end{document}

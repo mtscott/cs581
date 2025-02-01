@@ -13,37 +13,37 @@ MNISTModel::MNISTModel(const ModelWeights& weights) : weights(weights) {}
 
 int MNISTModel::linear_batch(const std::vector<float>& input, const std::vector<float>& weight, const std::vector<float>& bias, int input_dim, int output_dim, int batch_size, std::vector<float>& output) {
 
-   // TODO: Your implementation here
-   for(size_t i = 0; i < output.size(); i++) {
-      // initialize output to 0 as a float
-      output[i] = 0.0f;  
-      output[i] = bias[i % output_dim];
-   }
+    // TODO: Your implementation here
+    #pragma omp parallel for
+    for(size_t i = 0; i < output.size(); i++) {
+        // initialize output to 0 as a float
+        output[i] = 0.0f;  
+        output[i] = bias[i % output_dim];
+    }
 
-   for (int i = 0; i < batch_size; i++) {
-      for (int j = 0; j < output_dim; j++) {
-         for (int k = 0; k < input_dim; k++) {
-            output[i * output_dim + j] += input[i * input_dim + k] * weight[j * input_dim + k];
-         }
-      }
-   }
+    #pragma omp parallel for
+    for (int i = 0; i < batch_size; i++) {
+        for (int j = 0; j < output_dim; j++) {
+            for (int k = 0; k < input_dim; k++) {
+                output[i * output_dim + j] += input[i * input_dim + k] * weight[j * input_dim + k];
+            }
+        }
+    }
 
    // TODO: End of your implementation
 
-   return 0;
+    return 0;
 }
 
 int MNISTModel::relu_batch(std::vector<float>& vector) {
 
    // TODO: Your implementation here
-
-   for (int i = 0; i < vector.size(); i++) {
-      if (vector[i] < 0.0f){
-         vector[i] = 0.0f;
-      }
-         
-
-   }
+    #pragma omp parallel for
+    for (int i = 0; i < vector.size(); i++) {
+        if (vector[i] < 0.0f){
+            vector[i] = 0.0f;
+        } 
+    }
 
    // TODO: End of your implementation
 
