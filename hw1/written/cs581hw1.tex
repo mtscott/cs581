@@ -145,7 +145,7 @@
 		\section{Sequential Code}
 		\begin{enumerate}
 			\item The performance accuracy for all code variants was \textbf{98.14\%}.
-			\item Below, you can see the table for my sequential code:
+			\item The results are seen in Tab. \ref{tab:Seq}.
 			\begin{table}[h]
 				\centering
 				\begin{tabular}{|c|l|}
@@ -161,14 +161,15 @@
 					Avg&  3262.7\\
 					\hline
 				\end{tabular}
+				\caption{Sequential Code for model.}
 				\label{tab:Seq}
-				\caption{}
 			\end{table}
 		\end{enumerate}
 		\section{OpenMP}
 		\begin{enumerate}
-			\item 	
-			\item \begin{table}[h]
+			\item The performance accuracy for all code variants was \textbf{98.14\%}.
+			\item The results are seen in Tab. \ref{tab:OpenMP}.
+			 \begin{table}[h]
 				\centering
 				\begin{tabular}{|c|l|l|l|l|}
 					\hline
@@ -183,41 +184,109 @@
 					Avg& 3401 &1778.3  &952.3  & 708.7 \\
 					\hline
 				\end{tabular}
+				\caption{OpenMP Code for model over changing thread numbers.}
 				\label{tab:OpenMP}
-				\caption{}
 			\end{table}
+			In terms of the speedup, first we need to recall that 
+			\begin{align}
+				\text{Speedup} = \frac{T_{\text{sequential}}}{T_{\text{parallel}}}\label{eqn:speedup}
+			\end{align}
+			So simply by dividing our times from the result in section 1, the speedup is seen in Tab. \ref{tab:speedOMP}.
+			\begin{table}[h]
+				\centering
+				\begin{tabular}{|c|c|}
+					\hline
+					\textbf{\# Thread}& \textbf{Speedup}  \\
+					\hline\hline
+					1&  0.95934 \\
+					2&   1.83473\\
+					4&   3.42613\\
+					8&   4.60378\\\hline
+				\end{tabular}
+				\caption{Speedup of OpenMP for varying number of threads.}
+				\label{tab:speedOMP}
+			\end{table}
+			\item The speedups for sequential (baseline), OpenMP, and PThreads are plotted in Fig. \ref{fig:speedup}.
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.7\linewidth]{speedup}
+				\caption{The speedup compared to the sequential code for OpenMP and PThreads for varying threads.}
+				\label{fig:speedup}
+			\end{figure}
+			
 		\end{enumerate}
 		
 		\section{Pthreads}
 		\begin{enumerate}
-			\item 
-			item \begin{table}[h]
+			\item The performance accuracy for all code variants was \textbf{98.15\%}.
+			\item \begin{table}[h]
 				\centering
 				\begin{tabular}{|c|l|l|l|l|}
 					\hline
 					\textbf{Trial}& \textbf{1 thread (ms)}  &\textbf{2 thread (ms)}  &\textbf{4  thread (ms)}  &\textbf{8 thread (ms)}  \\
 					\hline\hline
-					1&  &  &  &  \\
-					2&  &  &  &  \\
-					3&  &  &  &  \\
-					4&  &  &  &  \\
-					5&  &  &  &  \\
+					1&  3362 (\textbf{high})& 1694 (\textbf{high}) & 866(\textbf{low}) &640  (\textbf{high})\\
+					2& 3179 &1680 & 1074 (\textbf{high}) &664   \\
+					3&  3128 (\textbf{low})&  1653 (\textbf{low}) &  939 & 646  \\
+					4&  3175& 1685 &880  &665  \\
+					5&  3138& 1664 &  870 & 683 (\textbf{high}) \\
 					\hline
-					Avg&  &  &  &  \\
+					Avg&  3163&1676.3  &896.3 & 658.3 \\
 					\hline
 				\end{tabular}
+				\caption{PThread Code for model over changing thread numbers.}
 				\label{tab:Ptheads}
-				\caption{}
 			\end{table}
+			Recalling Eq. \ref{eqn:speedup}, simply by dividing our times seen in Tab. \ref{tab:Ptheads} by the result in section 1, the speedup is seen in Tab. \ref{tab:speedPT}.
+			\begin{table}[h]
+			\centering
+			\begin{tabular}{|c|c|}
+				\hline
+				\textbf{\# Thread}& \textbf{Speedup}  \\
+				\hline\hline
+				1&  1.03152 \\
+				2&   1.94637\\
+				4&   3.64019\\
+				8&   4.95625\\\hline
+			\end{tabular}
+			\caption{Speedup of PThreads for varying number of threads.}
+			\label{tab:speedPT}
+			\end{table}
+			\item This has already been done in Fig. \ref{fig:speedup}.
 		\end{enumerate}
-		\section{Implimentation}
+		\section{Implementation}
 		\begin{enumerate}
-			\item 
+			\item How do you design your sequential implementation to be cache efficient?
+			\begin{solution}
+				The forward pass of the algorithm is essentially solving
+				\begin{align}
+					\bfx_{\text{output}}&= \sigma\left(\bfW \bfx_{\text{input}} + \bfb \right), \quad \text{where}\\
+					\sigma(x) &= \begin{cases}
+						x,& x\geq0\\ 0, &x<0
+					\end{cases}
+				\end{align}
+				is the ``rectified linear unit" (ReLU). The $\bfx_{\text{output}}$ is stored as a long vector of length ``output\_dim $\times$ batch\_size'', but can be thought of as a matrix stored F (as in Fortran) style. Similarly $\bfx_{\text{input}}$ has the same vector to matrix mapping but with vector of length ``input\_dim $\times$ batch\_size''. Conversely, $\bfW$ is a matrix stored as a vector of length ``input\_dim $\times$ output\_dim'', but it is stored C style, which means that performing the repeated matvec of $\bfW\bfx_{\text{input}}$ is essentially an inner product. 
+				
+				First we initialize $\bfx_{\text{output}}$ as a vector of floats. Then we move $\bfb$ into the cache to make repeated copies of it into the newly initialized (to zero) $\bfx_{\text{output}}$. Now that we have accounted for the bias term, we need to increment the matrix-matrix multiplication. We do this by first considering the batches, then the output, then the input. We utilize the fact that $\bfW$ is C style and $\bfx_{\text{input}}$ is F style to increment the counters to be cache efficient. 
+			\end{solution}
+			\item How do you parallelize the linear layer and the ReLU activation function?
+			\begin{solution}
+				For the OpenMP code, it was very straightforward to turn my model code into parallel code for the linear layer and ReLU function. I simply put the \#pragma omp for outside of the largest for loop. Since we are trying to parallelize nested for loops, OpenMP cleverly divies the work up behind the scenes. Since I didn't put this parallel code in the inner more for loop, we didn't have to worry about mutexes or critical regions.
+				
+				For the PThreads code, I once again divided up the outer-most for loop to make sure that there was no need for a mutex. Since the outer for loop was over the batches, I essentially divided the total number of batches by the number of threads to determine the start and end batches that each thread would do. On the last thread, I changed the end batches to the last batch to ensure that no batch was left undone. Since the batches are independent, the concurrent reads and writes were essentially independent processes.
+				
+			\end{solution}
+			\item What is the performance bottleneck of your parallel implementation?
+			\begin{solution}
+				In an ideal world, by doubling the amount of threads that we have, the speedup would be twice as fast. However, this is not the case. This is a demonstration of the communication bottleneck. By having more threads, we still need scatter the data from the cache to new places, and while the heavy computation can be done in parallel, the data still needs to be gathered. This communication is not for free, and is why the speedup will eventually level off.
+				
+				Another performance bottleneck might be the load imbalance. Assume we have 15 tasks to perform on 4 processors. Each task would need to perform 3.75 tasks, but in integer division, we would have the tasks performed per processor be 3,3,3,6. This means that the last processor has to do twice the amount of work compared to the other processors. Since the entire process needs to have all processors complete, this would obviously cause a performance bottleneck.
+			\end{solution}
 		\end{enumerate}
 		
 		
 	
 	\section*{Acknowledgements}
-	I would like to acknowledge that I worked with fellow CS 524 students 
+	I would like to acknowledge that I worked with fellow CS 581 students Emma Hart in OH on 2-4-25. Additionally I did use the Github Copilot to expedite my code (of course I checked the work it produced before I ran it). Lastly, I use resources from the University of Michigan EECS department to figure out how to structure my PThread code.
 	
 \end{document}

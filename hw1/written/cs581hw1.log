@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.28)  1 FEB 2025 16:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.28)  4 FEB 2025 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1142,30 +1142,55 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+Package epstopdf Info: Source file: <speedup.eps>
+(epstopdf)                    date: 2025-02-04 12:34:16
+(epstopdf)                    size: 14642 bytes
+(epstopdf)             Output file: <speedup-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-02-04 12:55:47
+(epstopdf)                    size: 9160 bytes
+(epstopdf)             Command: <repstopdf --outfile=speedup-eps-converted-to.p
+df speedup.eps>
+(epstopdf)             \includegraphics on input line 212.
+Package epstopdf Info: Output file is already uptodate.
+<speedup-eps-converted-to.pdf, id=31, 562.1pt x 421.575pt>
+File: speedup-eps-converted-to.pdf Graphic file (type pdf)
+<use speedup-eps-converted-to.pdf>
+Package pdftex.def Info: speedup-eps-converted-to.pdf  used on input line 212.
+(pdftex.def)             Requested size: 318.66948pt x 239.00082pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [1
 
 {/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] (./cs581hw1.aux)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2] [3 <./speedup-eps-converted-to.pdf>] [4] (./cs581hw1.aux)
 Package rerunfilecheck Info: File `cs581hw1.out' has not changed.
-(rerunfilecheck)             Checksum: 4FB541349FE30E67482118A3EBE2735B;488.
+(rerunfilecheck)             Checksum: 272D0E6F1E156309DA5924C70EDAB280;488.
  ) 
 Here is how much of TeX's memory you used:
- 27773 strings out of 476025
- 525977 string characters out of 5790016
- 1868388 words of memory out of 5000000
- 47745 multiletter control sequences out of 15000+600000
- 522544 words of font info for 68 fonts, out of 8000000 for 9000
+ 27848 strings out of 476025
+ 527054 string characters out of 5790016
+ 1871388 words of memory out of 5000000
+ 47792 multiletter control sequences out of 15000+600000
+ 523165 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,12n,104p,462b,531s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,14n,104p,611b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
-></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on cs581hw1.pdf (2 pages, 75747 bytes).
+></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
+usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
+r/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
+ocal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
+cal/texlive/2023/texmf-dist/fonts/type1/public/mathabx-type1/matha12.pfb></usr/
+local/texlive/2023/texmf-dist/fonts/type1/public/mathabx-type1/mathx10.pfb>
+Output written on cs581hw1.pdf (4 pages, 118627 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 66 compressed objects within 1 object stream
- 19 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 139 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
+ 32 named destinations out of 1000 (max. 500000)
+ 58 words of extra memory for PDF output out of 10000 (max. 10000000)
 
