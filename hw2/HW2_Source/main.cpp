@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 
    MPI_Comm_rank(MPI_COMM_WORLD, &myid);
    MPI_Comm_size(MPI_COMM_WORLD, &np);
+   std::cout << "I am MPI process " << myid << " of " << np << std::endl;
 
    std::vector<float> init_array;
 
@@ -47,8 +48,8 @@ int main(int argc, char *argv[])
    MPI_Barrier(MPI_COMM_WORLD);
    auto start = std::chrono::high_resolution_clock::now();
 
-   //float* sorted_array = parallel_quicksort(init_array.data(), init_array.size(), MPI_COMM_WORLD);
-   float* sorted_array = quick_sort(init_array.data(), init_array.size(), MPI_COMM_WORLD);
+   float* sorted_array = parallel_quicksort(init_array.data(), init_array.size(), MPI_COMM_WORLD);
+   // float* sorted_array = quick_sort(init_array.data(), init_array.size(), MPI_COMM_WORLD);
 
    MPI_Barrier(MPI_COMM_WORLD);
    auto end = std::chrono::high_resolution_clock::now();
