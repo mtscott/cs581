@@ -3,8 +3,11 @@
 #include <cstring>
 #include <vector>
 #include <chrono>
+#include <random>
+#include <algorithm>
 #include "parallel_sort.hpp"
 #include "mpi.h"
+#include <unistd.h>
 
 bool is_vector_sorted( float* data, int length);
 
@@ -24,7 +27,6 @@ int main(int argc, char *argv[])
 
    MPI_Comm_rank(MPI_COMM_WORLD, &myid);
    MPI_Comm_size(MPI_COMM_WORLD, &np);
-   std::cout << "I am MPI process " << myid << " of " << np << std::endl;
 
    std::vector<float> init_array;
 

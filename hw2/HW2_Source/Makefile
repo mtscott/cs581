@@ -1,5 +1,5 @@
 CXX = mpicxx
-CXXFLAGS = -O0 -Wall -std=c++17 -fopenmp
+CXXFLAGS = -O0 -Wall -std=c++17 
 LDFLAGS = -L/usr/local/lib -lmpi
 TARGET = foo.ex
 SRCS = main.cpp parallel_sort.cpp

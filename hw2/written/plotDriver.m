@@ -1,0 +1,66 @@
+seq_small = 3.01527e-5;
+seq_med = 0.000980111;
+seq_large = 1.25460;
+seq_huge = 6.748437;
+
+t1_small = (1.1875e-4 + 1.22291e-4 + 1.5875e-4)/3;
+t2_small = (1.60708e-4 + 1.74e-4 + 1.66537e-4)/3;
+t4_small = (0.00127112 + 0.000373667 + 0.000644041)/3;
+t8_small = (0.00222171 + 0.002149 + 0.00199421)/3;
+
+t1_med = (0.00110038 + 0.00122571 + 0.00100529)/3;
+t2_med = (0.00269762 + 0.00240858 + 0.00277246)/3;
+t4_med = (0.00197646 + 0.00202196 + 0.00209833)/3;
+t8_med = (0.00612125 + 0.00400771 + 0.00410279)/3;
+
+t1_large = (1.14397 + 1.13633 + 1.1341)/3;
+t2_large = (0.909059 + 0.914919 + 0.91012)/3;
+t4_large = (0.534829 + 0.532734 + 0.533748)/3;
+t8_large = (0.586798 + 0.576026 + 0.607107)/3;
+
+t1_huge = (5.96154 + 5.94369 + 5.98632)/3;
+t2_huge = (4.34822 + 4.27647 + 4.27752)/3;
+t4_huge = (2.61821 + 2.69274 + 2.71596)/3;
+t8_huge = (2.49775 + 2.34084 + 2.32781)/3;
+
+np = [1,2,4,8];
+s_small = [seq_small/t1_small, seq_small/t2_small, seq_small/t4_small, seq_small/t8_small];
+s_med = [seq_med/t1_med, seq_med/t2_med, seq_med/t4_med, seq_med/t8_med];
+s_large = [seq_large/t1_large, seq_large/t2_large, seq_large/t4_large, seq_large/t8_large];
+s_huge = [seq_huge/t1_huge, seq_huge/t2_huge, seq_huge/t4_huge, seq_huge/t8_huge];
+
+figure(1);
+semilogx(np,s_small,'-', np, s_med, '-.', np, s_large, '-o', np, s_huge, '--', LineWidth=2);
+legend('small', 'medium', 'large', 'huge', 'location', 'northwest');
+title('Speed-up over various sized problems')
+xlabel('number of processors')
+ylabel('Speedup')
+
+figure(2);
+x = categorical({'Small','Medium','Large','Huge'});
+x = reordercats(x,{'Small','Medium','Large','Huge'});
+y = [45/100 55/100; 4545/10000, 5455/10000; 2921920/10000000 7078080/10000000; 22679098/ 50000000, 27320900/50000000];
+b = bar(x,y,"stacked");
+ylabel('% in each thread')
+title('Data Split with 2 threads')
+
+figure(3);
+y = [27/100, 18/100,21/100, 34/100; 
+    3576/10000, 1640/10000, 2651/10000, 2133/10000; 
+    2295919/10000000, 1976650/10000000, 3271472/10000000, 2455958/10000000; 
+    7481639/50000000,15197459/50000000, 15030396/50000000, 12290504/50000000];
+b = bar(x,y,"stacked");
+ylabel('% in each thread')
+title('Data Split with 4 threads')
+
+figure(4);
+y = [15/100, 14/100,11/100, 11/100, 17/100, 9/100,13/100, 10/100; 
+    2094/10000, 1541/10000, 905/10000, 999/10000, 989/10000, 1145/10000,...
+    1275/10000, 1052/10000; 
+    905099/10000000, 1250319/10000000, 598091/10000000,1173759/10000000,...
+    756862/10000000,2578040/10000000, 771952/10000000, 1965877/10000000; 
+    5976747/50000000,4498126/50000000, 9244916/50000000, 3718847/50000000,...
+    10153668/50000000, 5835765/50000000, 4266390/50000000, 6305539/50000000];
+b = bar(x,y,"stacked");
+ylabel('% in each thread')
+title('Data Split with 8 threads')
