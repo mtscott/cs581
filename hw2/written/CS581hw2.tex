@@ -280,31 +280,35 @@
 	
 	
 	\subsection{Data Splits}
-	Ideally, we would split the data in such a way that all processors get the same amount of data to sort locally, but since we don't know the distribution of the data, we cannot \textit{a priori} know the best splitting vector. Instead, we 
+	Ideally, we would split the data in such a way that all processors get the same amount of data to sort locally, but since we don't know the distribution of the data, we cannot \textit{a priori} know the best splitting vector. Instead, we set a sampling parameter $k$, which for all the experiments was $k=5$, which then is how many samples we took from each processor and sent back to the root processor. These samples were then concatenated and sorted to find the partition values. As we see from Fig. \ref{fig:Split}, this doesn't always work well as there are some processors that have more then their fair share of data to sort, while other processors are waiting around.
 	\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\linewidth]{dataSplits2}
 	\includegraphics[width=0.45\linewidth]{dataSplits4}
 	\includegraphics[width=0.45\linewidth]{dataSplits8}
-	\label{fig:SpectralDeriv2}
 	\caption{Visualized the data splits between processors for all datasets using (a) 2 threads, (b) 4 threads, and (c) 8 threads.}
+	\label{fig:Split}
 	\end{figure}
+	
+	This leads to a nice extension that is: what is the optimal $k$ value so that the workload is evenly balanced. Obviously there is a tradeoff between larger $k$ meaning the workload is more balanced, and larger $k$ means more computation.
 	
 	\section{Implementation}
 	\begin{enumerate}
 		\item \textbf{ Explain the Algorithm you used.}
 		\begin{solution}
-		
+			First I used \texttt{MPI\_Bcast} to broadcast the amount of data that will be sent to each processor dynamically. Once all processors had the amount that they would recieve, I used \texttt{MPI\_Scatterv} to actually send the data to each processor. The 'v' indicates that the data can be variable for each processor. Here we use \texttt{MPI\_Reduce} to find the max and min of each processors' data. I  took these values and  the first $k$ elements on each processor and used \texttt{MPI\_Gather} to send these to the root processor, where it can be sorted. Here we get the min and max of the data globally. Then from this sorted vector of samples, we use \texttt{MPI\_Bcast} to send the splitting points back to each processor.  We then figure out, based on the splitting vector, which data will be sent where and use \texttt{MPI\_Alltoall} to send the send counts and recieve counts of all the processes to each other process. We then use \texttt{MPI\_Alltoallv} to actually send the data to the correct processor. This data is then sorted. Lastly, we use \texttt{MPI\_Gather} and \texttt{MPI\_Gatherv} to send the amount of data and the actual data to the root processor. 
 		\end{solution}
 		\item \textbf{What is the performance bottleneck of your parallel implementation?}
 		\begin{solution}
+			The major consideration here is the communication between different processors. While we can see this many places, the most prominent to me is the difference between 4 and 8 processors in the \texttt{large.bin} dataset. We actually notice a decrease in speed between these two cases, which is uncommon, since we have more threads doing the work. But by having double the communication consts, we see that this is stronger than the speedup by the extra threads. 
 			
+			Additionally a bottleneck is the load inbalance. As we see in the different data splits (Fig. \ref{fig:Split} ), the data might be close to balanced but it is not exact. This allows some processors to do a lot of work while the others are doing nothing. This means the clock time is going to reflect the longer time it took that single processor to do all the work. This would be an interesting extension, to see what sampling parameter $k$ is optimal for each dataset.
 		\end{solution}
 	\end{enumerate}
 	
 	
 	
 	\section*{Acknowledgements}
-	I would like to acknowledge that I worked with fellow CS 581 students Emma Hart in OH on 2-4-25. Additionally I did use the Github Copilot to expedite my code (of course I checked the work it produced before I ran it). Lastly, I use resources from the University of Michigan EECS department to figure out how to structure my PThread code.
+	I would like to acknowledge that I worked with fellow CS 581 students Emma Hart and Francesco Brarda in OH as well as in the office on Thursday and Friday, February 27-28.
 	
 \end{document}

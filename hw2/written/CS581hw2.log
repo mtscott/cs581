@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.28)  4 MAR 2025 16:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.28)  4 MAR 2025 18:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1189,7 +1189,7 @@ Package epstopdf Info: Source file: <dataSplits2.eps>
 to.pdf dataSplits2.eps>
 (epstopdf)             \includegraphics on input line 286.
 Package epstopdf Info: Output file is already uptodate.
-<dataSplits2-eps-converted-to.pdf, id=91, 562.1pt x 421.575pt>
+<dataSplits2-eps-converted-to.pdf, id=92, 562.1pt x 421.575pt>
 File: dataSplits2-eps-converted-to.pdf Graphic file (type pdf)
 <use dataSplits2-eps-converted-to.pdf>
 Package pdftex.def Info: dataSplits2-eps-converted-to.pdf  used on input line 2
@@ -1205,7 +1205,7 @@ Package epstopdf Info: Source file: <dataSplits4.eps>
 to.pdf dataSplits4.eps>
 (epstopdf)             \includegraphics on input line 287.
 Package epstopdf Info: Output file is already uptodate.
-<dataSplits4-eps-converted-to.pdf, id=92, 562.1pt x 421.575pt>
+<dataSplits4-eps-converted-to.pdf, id=93, 562.1pt x 421.575pt>
 File: dataSplits4-eps-converted-to.pdf Graphic file (type pdf)
 <use dataSplits4-eps-converted-to.pdf>
 Package pdftex.def Info: dataSplits4-eps-converted-to.pdf  used on input line 2
@@ -1221,7 +1221,7 @@ Package epstopdf Info: Source file: <dataSplits8.eps>
 to.pdf dataSplits8.eps>
 (epstopdf)             \includegraphics on input line 288.
 Package epstopdf Info: Output file is already uptodate.
-<dataSplits8-eps-converted-to.pdf, id=93, 562.1pt x 421.575pt>
+<dataSplits8-eps-converted-to.pdf, id=94, 562.1pt x 421.575pt>
 File: dataSplits8-eps-converted-to.pdf Graphic file (type pdf)
 <use dataSplits8-eps-converted-to.pdf>
 Package pdftex.def Info: dataSplits8-eps-converted-to.pdf  used on input line 2
@@ -1231,20 +1231,20 @@ Package pdftex.def Info: dataSplits8-eps-converted-to.pdf  used on input line 2
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3] [4 <./speedup-eps-converted-to.pdf> <./dataSplits2-eps-converted-to.pdf> <.
-/dataSplits4-eps-converted-to.pdf> <./dataSplits8-eps-converted-to.pdf>]
+[3] [4 <./speedup-eps-converted-to.pdf>] [5 <./dataSplits2-eps-converted-to.pdf
+> <./dataSplits4-eps-converted-to.pdf> <./dataSplits8-eps-converted-to.pdf>]
 (./CS581hw2.aux)
 Package rerunfilecheck Info: File `CS581hw2.out' has not changed.
 (rerunfilecheck)             Checksum: 16C8AD2522337F555D736454BFB1D969;1200.
  ) 
 Here is how much of TeX's memory you used:
- 27958 strings out of 476025
- 529730 string characters out of 5790016
+ 27960 strings out of 476025
+ 529736 string characters out of 5790016
  1875388 words of memory out of 5000000
- 47905 multiletter control sequences out of 15000+600000
+ 47906 multiletter control sequences out of 15000+600000
  523020 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,12n,104p,673b,460s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,12n,104p,1220b,615s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
 ></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
@@ -1254,10 +1254,10 @@ r/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
 ocal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
 cal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/loc
 al/texlive/2023/texmf-dist/fonts/type1/public/mathabx-type1/matha12.pfb>
-Output written on CS581hw2.pdf (4 pages, 135367 bytes).
+Output written on CS581hw2.pdf (5 pages, 141639 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
- 143 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
+ 188 PDF objects out of 1000 (max. 8388607)
+ 149 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
  121 words of extra memory for PDF output out of 10000 (max. 10000000)
 
